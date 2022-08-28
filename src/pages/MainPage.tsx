@@ -1,7 +1,23 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Cards from "../components/Cards";
+import { IProduct } from "../models";
+import axios from "axios";
+
 
 export default function MainPage() {
+  const [products, setProducts] = useState<IProduct[]>([]); 
+
+  async function fetchProducts() {
+    const response = await axios.get<IProduct[]>(
+      "https://fakestoreapi.com/products"
+    );
+    setProducts(response.data);
+  }
+
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+
   return (
     <div>
       <div className="px-14 py-11 justify-between flex items-center">
@@ -12,13 +28,7 @@ export default function MainPage() {
         </div>
       </div>
       <div className="px-14  flex-wrap py-11 gap-10  flex">
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
-        <Cards />
+        { products.map(product => <Cards product={product} />)}
       </div>
     </div>
   );

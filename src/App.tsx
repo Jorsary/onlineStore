@@ -53,7 +53,7 @@ function App() {
         </div>
 
       <div className="flex flex-col items-center box-border px-20">
-        <div className="bg-white max-w-6xl rounded-2xl shadow-lg  my-6">
+        <div className="bg-white max-w-6xl w-full rounded-2xl shadow-lg  my-6">
           <Header />
           <MainPage />
         </div>
