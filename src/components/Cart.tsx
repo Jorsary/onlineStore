@@ -1,8 +1,14 @@
 import React from "react";
-import { CartProps } from "../models";
+import { useAppSelector } from "../hooks/redux";
+import { CartProps } from "../models/IProduct";
+import CartItem from "./CartItem";
 
 
-export default function Cart({onClose}:CartProps) {
+export default function Cart({onCloseCart}:CartProps) {
+  const {cartItems} = useAppSelector(
+    (state) => state.cart
+  );
+
   return (
     (
         <div className=" bg-slate-900/50  absolute left-0 top-0 z-[1] w-full h-full">
@@ -13,26 +19,13 @@ export default function Cart({onClose}:CartProps) {
                 className="removeBtn cursor-pointer"
                 src="/img/btn-remove.svg"
                 alt="Remove"
-                onClick={onClose}
+                onClick={onCloseCart}
               />
             </div>
-
-            <div className="gap-5 flex flex-col flex-grow">
-              <div className="border border-solid rounded-2xl overflow-hidden p-5 flex items-center">
-                <img
-                  className="mr-5"
-                  width={70}
-                  height={70}
-                  src="/img/sneakers/1.jpg"
-                  alt="Sneakers"
-                />
-                <div className="mr-5">
-                  <p className="mb-1">Мужские Кроссовки Nike Air Max 270</p>
-                  <b>12 999 руб.</b>
-                </div>
-                <img src="/img/btn-remove.svg" alt="Remove" />
-              </div>
-            </div>
+            {cartItems.map((item) => (
+            <CartItem cartItem={item} />
+        ))}
+            
             <ul className="flex flex-col gap-5">
               <li className="flex items-end">
                 <span>Итого: </span>

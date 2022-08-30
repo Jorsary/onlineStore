@@ -12,5 +12,5 @@ export interface IProduct {
 }
 
 export interface CartProps {
-  onClose: () => void
+  onCloseCart: () => void
 }
