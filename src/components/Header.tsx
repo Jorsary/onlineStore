@@ -1,8 +1,13 @@
 import React, { ComponentElement, useState } from "react";
 import { CartProps } from "../models/IProduct";
 import { NavLink } from "react-router-dom";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { cartShow } from "../store/reducers/CartSlice";
 
-export default function Header({ onCloseCart }: CartProps) {
+export default function Header() {
+  const { cartTotal,cartOpened } = useAppSelector((state) => state.cart);
+  const totalCart = Number(cartTotal.toFixed(2));
+  const dispatch=useAppDispatch()
   return (
     <header className="flex justify-between items-center px-14 py-10 border-b border-b-slate-200">
         <NavLink className="flex items-center" to="/">
@@ -11,15 +16,13 @@ export default function Header({ onCloseCart }: CartProps) {
             <h3 className="uppercase font-bold text-xl leading-6 min-w-max">
               React store
             </h3>
-            <p className="text-sm opacity-50 min-w-max">
-              Магазин низких цен
-            </p>
-          </div>
-        </NavLink>
+          <p className="text-sm opacity-50 min-w-max">Магазин низких цен</p>
+        </div>
+      </NavLink>
       <ul className="flex flex-shrink basis-48 justify-between items-center">
-        <li className="cursor-pointer flex" onClick={onCloseCart}>
+        <li onClick={()=>dispatch(cartShow())} className="cursor-pointer flex">
           <img className="mr-2" src="img/cart.svg" />
-          <span>1205 руб.</span>
+          <span>{totalCart} $</span>
         </li>
 
         <li className="cursor-pointer">

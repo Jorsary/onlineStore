@@ -1,16 +1,20 @@
+import { ReactNode } from "react";
+
 export interface IProduct {
-  id: number
-  title: string
-  price: number
-  description: string
-  category: string
-  image: string
+  id: number;
+  title: string;
+  price: number;
+  description: string;
+  category: string;
+  image: string;
   rating: {
-    rate: number
-    count: number
+    rate: number;
+    count: number;
   };
 }
 
 export interface CartProps {
-  onCloseCart: () => void
+  stateCart?: boolean;
+  onOpenCart?: () => void;
+  onCloseCart?: () => void;
 }
