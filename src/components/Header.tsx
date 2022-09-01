@@ -5,8 +5,8 @@ import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { cartShow } from "../store/reducers/CartSlice";
 
 export default function Header() {
-  const { cartTotal,cartOpened } = useAppSelector((state) => state.cart);
-  const totalCart = Number(cartTotal.toFixed(2));
+  const { cartTotal,cartItems } = useAppSelector((state) => state.cart);
+  const totalCart = Number(cartTotal);
   const dispatch=useAppDispatch()
   return (
     <header className="flex justify-between items-center px-14 py-10 border-b border-b-slate-200">
@@ -22,7 +22,7 @@ export default function Header() {
       <ul className="flex flex-shrink basis-48 justify-between items-center">
         <li onClick={()=>dispatch(cartShow())} className="cursor-pointer flex">
           <img className="mr-2" src="img/cart.svg" />
-          <span>{totalCart} $</span>
+          <span>{cartItems.length}</span>
         </li>
 
         <li className="cursor-pointer">

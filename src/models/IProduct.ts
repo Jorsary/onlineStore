@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 
 export interface IProduct {
+  cartQuantity: number;
   id: number;
   title: string;
   price: number;

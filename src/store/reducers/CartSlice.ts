@@ -17,38 +17,58 @@ const initialState: CartState = {
   cartTax: 0,
 };
 
-const calcTotalPrice = (items: IProduct[]) => {
-  return items.reduce((sum, obj) => obj.price + sum, 0);
-};
-
-const calcTaxPrice = (cartTotal: Number) => {
-  return (Number(cartTotal) / 100) * 5;
-};
-
 const cartSlice = createSlice({
   name: "cart",
   initialState,
   reducers: {
     addItem: (state, action: PayloadAction<IProduct>) => {
-      state.cartItems.push({
-        ...action.payload,
-      });
-      state.cartTotal = calcTotalPrice(state.cartItems);
-      state.cartTax = calcTaxPrice(state.cartTotal);
+      const itemIndex = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (itemIndex >= 0) {
+        state.cartItems[itemIndex] = {
+          ...state.cartItems[itemIndex],
+          cartQuantity: state.cartItems[itemIndex].cartQuantity + 1,
+        };
+      } else {
+        let tempProduct = {
+          ...action.payload,
+          cartQuantity: 1,
+        };
+        state.cartItems.push(tempProduct);
+      }
     },
+    decreaseCart(state, action) {
+      const itemIndex = state.cartItems.findIndex(
+        (item) => item.id === action.payload.id
+      );
+
+      if (state.cartItems[itemIndex].cartQuantity > 1) {
+        state.cartItems[itemIndex].cartQuantity -= 1;
+      } else if (state.cartItems[itemIndex].cartQuantity === 1) {
+        const nextCartItems = state.cartItems.filter(
+          (item) => item.id !== action.payload.id
+        );
+
+        state.cartItems = nextCartItems;
+      }
+    },
+    removeItem: (state, action: PayloadAction<IProduct>) => {
+      const nextCartItems = state.cartItems.filter(
+        (cartItems) => cartItems.id !== action.payload.id
+      );
+      state.cartItems = nextCartItems;
+    },
+
     cartShow: (state) => {
       state.cartOpened = true;
     },
     cartHide: (state) => {
       state.cartOpened = false;
     },
-    removeItem: (state, action: PayloadAction<IProduct>) => {
-      const nextCartItems=state.cartItems.filter(cartItems => cartItems.id !== action.payload.id)
-      state.cartItems=nextCartItems
-    }
-    
   },
 });
 
 export default cartSlice.reducer;
-export const { addItem, cartHide, cartShow, removeItem} = cartSlice.actions;
+export const { addItem, cartHide, cartShow, removeItem, decreaseCart } =
+  cartSlice.actions;
