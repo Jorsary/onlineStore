@@ -1,15 +1,13 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { IProduct } from "../models/IProduct";
+import { CartItemProps, IProduct } from "../models/IProduct";
 import {
   addItem,
   cartHide,
   decreaseCart,
   removeItem,
 } from "../store/reducers/CartSlice";
-interface CartItemProps {
-  cartItem: IProduct;
-}
+
 
 export default function CartItem({ cartItem }: CartItemProps) {
   const dispatch = useAppDispatch();

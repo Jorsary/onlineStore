@@ -1,6 +1,5 @@
 import React from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { CartProps } from "../models/IProduct";
 import CartItem from "./CartItem";
 import classNames from "classnames";
 import { cartHide } from "../store/reducers/CartSlice";
@@ -11,11 +10,10 @@ const cartStyles =
   "absolute w-[420px] right-0 h-full bg-white p-8 flex flex-col transition-transform ";
 
 export default function Cart() {
-  const { cartItems, cartTotal, cartTax, cartOpened } = useAppSelector(
+  const { cartItems, cartTotal, cartTotalPrice, cartOpened } = useAppSelector(
     (state) => state.cart
   );
-  const totalCart = Number(cartTotal);
-  const totalTax = Number(cartTax);
+  const totalPrice = Number(cartTotalPrice);
   const dispatch=useAppDispatch()
   return (
     <div
@@ -49,12 +47,12 @@ export default function Cart() {
           <li className="flex items-end">
             <span>Итого: </span>
             <div className="flex-grow border-b border-dashed"></div>
-            <b>{totalTax} $</b>
+            <b>{totalPrice} $</b>
           </li>
           <li className="flex items-end">
             <span>Налог 5%:</span>
             <div className="flex-grow border-b border-dashed"></div>
-            <b>{(totalTax/100*5).toFixed(2)}$</b>
+            <b>{(totalPrice/100*5).toFixed(2)}$</b>
           </li>
         </ul>
       </div>

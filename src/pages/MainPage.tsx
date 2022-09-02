@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { fetchProducts } from "../store/reducers/ActionCreators";
 import { Audio } from "react-loader-spinner";
@@ -26,12 +26,9 @@ export default function MainPage() {
       <div className="px-14  flex-wrap py-11 gap-10  flex">
         {isLoading && (
           <div className="flex m-auto ">
-            <Audio
-              height="80"
-              width="80"
-              color="rgb(130,130,255)"
-              ariaLabel="dots-loading"
-            />
+            <div className="animate-bounce">
+              <div className="border border-cyan-300 border-4 border-dashed  p-14 animate-spin rounded-full"></div>
+            </div>
           </div>
         )}
         {error && <h1>{error}</h1>}

@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { IProduct } from "../models/IProduct";
+import { IProduct, ProductProps } from "../models/IProduct";
 import {
   addItem,
   decreaseCart,
@@ -10,9 +10,7 @@ import {
 } from "../store/reducers/CartSlice";
 import Cart from "./Cart";
 
-export interface ProductProps {
-  product: IProduct;
-}
+
 
 export default function Cards({ product }: ProductProps) {
   const { cartItems } = useAppSelector((state) => state.cart);

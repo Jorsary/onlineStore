@@ -5,11 +5,8 @@ module.exports = {
   ],
   theme: {
     extend: {
-      keyframes: {
-        wiggle: {
-          '0%': { opacity: "0" },
-          '100%': { opacity: "1"  },
-        }
+      animation: {
+        spin: "spin 10s linear infinite"
       }
     },
   },

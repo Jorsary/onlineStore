@@ -19,3 +19,23 @@ export interface CartProps {
   onOpenCart?: () => void;
   onCloseCart?: () => void;
 }
+
+export interface CartState {
+  cartOpened: boolean;
+  cartItems: IProduct[];
+  cartTotal: Number;
+  cartTotalPrice: Number;
+}
+export interface ProductsState {
+  products: IProduct[];
+  isLoading: boolean;
+  error: string;
+}
+
+export interface CartItemProps {
+  cartItem: IProduct;
+}
+
+export interface ProductProps {
+  product: IProduct;
+}

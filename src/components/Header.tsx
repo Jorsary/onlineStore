@@ -5,7 +5,7 @@ import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { cartShow, getTotals } from "../store/reducers/CartSlice";
 
 export default function Header() {
-  const { cartTotal,cartItems, } = useAppSelector((state) => state.cart);
+  const { cartTotal,cartItems } = useAppSelector((state) => state.cart);
   const totalCart = Number(cartTotal);
   const dispatch=useAppDispatch()
   

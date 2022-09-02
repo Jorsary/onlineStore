@@ -9,7 +9,7 @@ export const fetchProducts = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const responce = await axios.get<IProduct[]>(
-        "https://fakestoreapi.com/products"
+        "https://run.mocky.io/v3/a1c42a2a-2546-4d1e-b2ec-56c0164c1d61"
       );
       return responce.data;
     } catch (e) {

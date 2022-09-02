@@ -1,23 +1,8 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import Cart from "../../components/Cart";
-import CartItem from "../../components/CartItem";
-import { IProduct } from "../../models/IProduct";
+import { CartState, IProduct } from "../../models/IProduct";
+import { getCartFromLS } from "../../utils/getCartFromLS";
 
-export interface CartState {
-  cartOpened: boolean;
-  cartItems: IProduct[];
-  cartTotal: Number;
-  cartTax: Number;
-}
-
-const initialState: CartState = {
-  cartOpened: false,
-  cartItems: [],
-  cartTotal: 0,
-  cartTax: 0,
-};
-
-
+const initialState: CartState = getCartFromLS()
 
 const calcTaxPrice = (cartTotal: Number) => {
   return (Number(cartTotal) / 100) * 5;
@@ -35,18 +20,15 @@ const cartSlice = createSlice({
         state.cartItems[itemIndex] = {
           ...state.cartItems[itemIndex],
           cartQuantity: state.cartItems[itemIndex].cartQuantity + 1,
-         
         };
-        
-        
       } else {
         let tempProduct = {
           ...action.payload,
           cartQuantity: 1,
         };
         state.cartItems.push(tempProduct);
-        
       }
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
     decreaseCart(state, action) {
       const itemIndex = state.cartItems.findIndex(
@@ -62,12 +44,14 @@ const cartSlice = createSlice({
 
         state.cartItems = nextCartItems;
       }
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
     removeItem: (state, action: PayloadAction<IProduct>) => {
       const nextCartItems = state.cartItems.filter(
         (cartItems) => cartItems.id !== action.payload.id
       );
       state.cartItems = nextCartItems;
+      localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
     },
 
     getTotals(state) {
@@ -88,7 +72,7 @@ const cartSlice = createSlice({
       );
       total = parseFloat(total.toFixed(2));
       state.cartTotal = quantity;
-      state.cartTax = total;
+      state.cartTotalPrice = total;
     },
 
     cartShow: (state) => {
@@ -101,5 +85,11 @@ const cartSlice = createSlice({
 });
 
 export default cartSlice.reducer;
-export const { addItem, cartHide, cartShow, removeItem, decreaseCart,getTotals } =
-  cartSlice.actions;
+export const {
+  addItem,
+  cartHide,
+  cartShow,
+  removeItem,
+  decreaseCart,
+  getTotals,
+} = cartSlice.actions;
