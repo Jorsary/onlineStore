@@ -1,13 +1,15 @@
-import React, { ComponentElement, useState } from "react";
+import React, { ComponentElement, useEffect, useState } from "react";
 import { CartProps } from "../models/IProduct";
 import { NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { cartShow } from "../store/reducers/CartSlice";
+import { cartShow, getTotals } from "../store/reducers/CartSlice";
 
 export default function Header() {
-  const { cartTotal,cartItems } = useAppSelector((state) => state.cart);
+  const { cartTotal,cartItems, } = useAppSelector((state) => state.cart);
   const totalCart = Number(cartTotal);
   const dispatch=useAppDispatch()
+  
+  
   return (
     <header className="flex justify-between items-center px-14 py-10 border-b border-b-slate-200">
         <NavLink className="flex items-center" to="/">
@@ -22,16 +24,16 @@ export default function Header() {
       <ul className="flex flex-shrink basis-48 justify-between items-center">
         <li onClick={()=>dispatch(cartShow())} className="cursor-pointer flex">
           <img className="mr-2" src="img/cart.svg" />
-          <span>{cartItems.length}</span>
+          <span className="text-cyan-500 text-xl">{totalCart}</span>
         </li>
 
         <li className="cursor-pointer">
           <NavLink to="/favorites">
-            <img src="img/like.svg" alt="" />
+            <img  src="./img/like.svg" alt="" />
           </NavLink>
         </li>
         <li className="cursor-pointer">
-          <img src="img/union.svg" alt="" />
+          <img src="./img/union.svg" alt="" />
         </li>
       </ul>
     </header>

@@ -17,6 +17,12 @@ const initialState: CartState = {
   cartTax: 0,
 };
 
+
+
+const calcTaxPrice = (cartTotal: Number) => {
+  return (Number(cartTotal) / 100) * 5;
+};
+
 const cartSlice = createSlice({
   name: "cart",
   initialState,
@@ -29,13 +35,17 @@ const cartSlice = createSlice({
         state.cartItems[itemIndex] = {
           ...state.cartItems[itemIndex],
           cartQuantity: state.cartItems[itemIndex].cartQuantity + 1,
+         
         };
+        
+        
       } else {
         let tempProduct = {
           ...action.payload,
           cartQuantity: 1,
         };
         state.cartItems.push(tempProduct);
+        
       }
     },
     decreaseCart(state, action) {
@@ -60,6 +70,27 @@ const cartSlice = createSlice({
       state.cartItems = nextCartItems;
     },
 
+    getTotals(state) {
+      let { total, quantity } = state.cartItems.reduce(
+        (cartTotal, cartItem) => {
+          const { price, cartQuantity } = cartItem;
+          const itemTotal = price * cartQuantity;
+
+          cartTotal.total += itemTotal;
+          cartTotal.quantity += cartQuantity;
+
+          return cartTotal;
+        },
+        {
+          total: 0,
+          quantity: 0,
+        }
+      );
+      total = parseFloat(total.toFixed(2));
+      state.cartTotal = quantity;
+      state.cartTax = total;
+    },
+
     cartShow: (state) => {
       state.cartOpened = true;
     },
@@ -70,5 +101,5 @@ const cartSlice = createSlice({
 });
 
 export default cartSlice.reducer;
-export const { addItem, cartHide, cartShow, removeItem, decreaseCart } =
+export const { addItem, cartHide, cartShow, removeItem, decreaseCart,getTotals } =
   cartSlice.actions;

@@ -1,8 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { IProduct } from "../models/IProduct";
-import { addItem, decreaseCart, removeItem } from "../store/reducers/CartSlice";
+import {
+  addItem,
+  decreaseCart,
+  getTotals,
+  removeItem,
+} from "../store/reducers/CartSlice";
+import Cart from "./Cart";
 
 export interface ProductProps {
   product: IProduct;
@@ -11,6 +17,11 @@ export interface ProductProps {
 export default function Cards({ product }: ProductProps) {
   const { cartItems } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
+  const cartAdded = cartItems.findIndex((item) => item.id == product.id) >= 0;
+
+  useEffect(() => {
+    dispatch(getTotals());
+  }, [cartItems]);
   return (
     <div className="flex flex-col justify-between  border p-7 w-56 transition ease-in-out duration-300 rounded-3xl hover:shadow-lg hover:-translate-y-1 ">
       <div className="absolute cursor-pointer">
@@ -23,12 +34,19 @@ export default function Cards({ product }: ProductProps) {
           <span className="uppercase text-xs opacity-50">Цена: </span>
           <b className="text-[14px]">{product.price} $</b>
         </div>
-        <button 
+        <button
+          onClick={
+            cartAdded
+              ? () => dispatch(removeItem(product))
+              : () => dispatch(addItem(product))
+          }
           className="cursor-pointer"
         >
-          <img src="/img/btn-plus.svg" alt="checked" />
+          <img src={cartAdded ? './img/btn-checked.svg' : './img/plus.svg' } alt="checked" />
         </button>
       </div>
     </div>
   );
 }
+
+// ? () => dispatch(removeItem(product)) : () => dispatch(addItem(product))

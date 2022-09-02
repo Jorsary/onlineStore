@@ -49,12 +49,12 @@ export default function Cart() {
           <li className="flex items-end">
             <span>Итого: </span>
             <div className="flex-grow border-b border-dashed"></div>
-            <b>$</b>
+            <b>{totalTax} $</b>
           </li>
           <li className="flex items-end">
             <span>Налог 5%:</span>
             <div className="flex-grow border-b border-dashed"></div>
-            <b>$</b>
+            <b>{(totalTax/100*5).toFixed(2)}$</b>
           </li>
         </ul>
       </div>
