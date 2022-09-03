@@ -11,7 +11,7 @@ export const fetchProducts = createAsyncThunk<IProduct[], string>(
   async function(category, thunkAPI) {
     try {
       const responce = await axios.get(
-        "https://631381c3a8d3f673ffcc361c.mockapi.io/products${category}"
+        "https://631381c3a8d3f673ffcc361c.mockapi.io/products" + category
       );
       return responce.data;
     } catch (e) {
