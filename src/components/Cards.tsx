@@ -1,25 +1,16 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { IProduct, ProductProps } from "../models/IProduct";
+import { ProductProps } from "../models/IProduct";
 import {
-  addItem,
-  decreaseCart,
-  getTotals,
-  removeItem,
+  addItem, removeItem
 } from "../store/reducers/CartSlice";
-import Cart from "./Cart";
 
 
 
 export default function Cards({ product }: ProductProps) {
   const { cartItems } = useAppSelector((state) => state.cart);
   const dispatch = useAppDispatch();
-  const cartAdded = cartItems.findIndex((item) => item.id == product.id) >= 0;
+  const cartAdded = cartItems.findIndex((item) => item.id === product.id) >= 0;
 
-  useEffect(() => {
-    dispatch(getTotals());
-  }, [cartItems]);
   return (
     <div className="flex flex-col justify-between  border p-7 w-56 transition ease-in-out duration-300 rounded-3xl hover:shadow-lg hover:-translate-y-1 ">
       <div className="absolute cursor-pointer">
@@ -47,4 +38,3 @@ export default function Cards({ product }: ProductProps) {
   );
 }
 
-// ? () => dispatch(removeItem(product)) : () => dispatch(addItem(product))

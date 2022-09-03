@@ -8,6 +8,5 @@ export const getCartFromLS = () => {
     cartItems: items as IProduct[],
     cartOpened: false,
     cartTotal: 0,
-    cartTotalPrice: 0,
   };
 };

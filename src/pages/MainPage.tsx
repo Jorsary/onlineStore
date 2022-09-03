@@ -1,8 +1,7 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
+import Cards from "../components/Cards";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { fetchProducts } from "../store/reducers/ActionCreators";
-import { Audio } from "react-loader-spinner";
-import Cards from "../components/Cards";
 
 export default function MainPage() {
   const dispatch = useAppDispatch();
@@ -12,7 +11,7 @@ export default function MainPage() {
 
   useEffect(() => {
     dispatch(fetchProducts());
-  }, []);
+  }, [dispatch]);
 
   return (
     <div>
@@ -27,7 +26,7 @@ export default function MainPage() {
         {isLoading && (
           <div className="flex m-auto ">
             <div className="animate-bounce">
-              <div className="border border-cyan-300 border-4 border-dashed  p-14 animate-spin rounded-full"></div>
+              <div className="border-cyan-300 border-4 border-dashed  p-14 animate-spin rounded-full"></div>
             </div>
           </div>
         )}

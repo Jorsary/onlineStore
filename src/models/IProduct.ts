@@ -1,5 +1,3 @@
-import { ReactNode } from "react";
-
 export interface IProduct {
   cartQuantity: number;
   id: number;
@@ -23,8 +21,7 @@ export interface CartProps {
 export interface CartState {
   cartOpened: boolean;
   cartItems: IProduct[];
-  cartTotal: Number;
-  cartTotalPrice: Number;
+  cartTotal: number;
 }
 export interface ProductsState {
   products: IProduct[];

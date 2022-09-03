@@ -1,8 +1,7 @@
-import React from "react";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import CartItem from "./CartItem";
 import classNames from "classnames";
+import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { cartHide } from "../store/reducers/CartSlice";
+import CartItem from "./CartItem";
 
 const overlayStyles =
   "bg-slate-900/50 absolute left-0 top-0 z-[1] w-full h-full transition-all overflow-hidden ";
@@ -10,10 +9,11 @@ const cartStyles =
   "absolute w-[420px] right-0 h-full bg-white p-8 flex flex-col transition-transform ";
 
 export default function Cart() {
-  const { cartItems, cartTotal, cartTotalPrice, cartOpened } = useAppSelector(
+  const { cartItems, cartOpened } = useAppSelector(
     (state) => state.cart
   );
-  const totalPrice = Number(cartTotalPrice);
+
+  const totalPrice= cartItems.reduce((sum,item) => sum + (item.price*item.cartQuantity),0 )
   const dispatch=useAppDispatch()
   return (
     <div
@@ -47,12 +47,12 @@ export default function Cart() {
           <li className="flex items-end">
             <span>Итого: </span>
             <div className="flex-grow border-b border-dashed"></div>
-            <b>{totalPrice} $</b>
+            <b>{totalPrice.toFixed(2)} $</b>
           </li>
           <li className="flex items-end">
             <span>Налог 5%:</span>
             <div className="flex-grow border-b border-dashed"></div>
-            <b>{(totalPrice/100*5).toFixed(2)}$</b>
+            <b>{(totalPrice*0.05).toFixed(2)}$</b>
           </li>
         </ul>
       </div>

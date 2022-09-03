@@ -1,13 +1,9 @@
-import React from "react";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { CartItemProps, IProduct } from "../models/IProduct";
+import { useAppDispatch } from "../hooks/redux";
+import { CartItemProps } from "../models/IProduct";
 import {
-  addItem,
-  cartHide,
-  decreaseCart,
-  removeItem,
+  addItem, decreaseCart,
+  removeItem
 } from "../store/reducers/CartSlice";
-
 
 export default function CartItem({ cartItem }: CartItemProps) {
   const dispatch = useAppDispatch();
@@ -25,11 +21,15 @@ export default function CartItem({ cartItem }: CartItemProps) {
           <p className="mb-1">{cartItem.title}</p>
           <b>{cartItem.price} $</b>{" "}
           <div className="flex items-center gap-1">
-          <button onClick={() => dispatch(decreaseCart(cartItem))}><img src="./img/minus.svg" alt="" /></button>
+            <button onClick={() => dispatch(decreaseCart(cartItem))}>
+              <img src="./img/minus.svg" alt="" />
+            </button>
             <p className="border rounded-md px-2 py-1">
               {cartItem.cartQuantity}
             </p>
-            <button onClick={() => dispatch(addItem(cartItem))} ><img src="./img/plus.svg" alt="" /></button>
+            <button onClick={() => dispatch(addItem(cartItem))}>
+              <img src="./img/plus.svg" alt="" />
+            </button>
           </div>
         </div>
 
