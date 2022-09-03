@@ -6,7 +6,7 @@ import { fetchProducts } from "./ActionCreators";
 
 const initialState: ProductsState = {
   products: [],
-  isLoading: true,
+  isLoading: false,
   error: "",
 };
 

@@ -8,11 +8,13 @@ const overlayStyles =
 const cartStyles =
   "absolute w-[420px] right-0 h-full bg-white p-8 flex flex-col transition-transform ";
 
+  
 export default function Cart() {
   const { cartItems, cartOpened } = useAppSelector(
     (state) => state.cart
   );
 
+  
   const totalPrice= cartItems.reduce((sum,item) => sum + (item.price*item.cartQuantity),0 )
   const dispatch=useAppDispatch()
   return (

@@ -9,7 +9,7 @@ export default function CartItem({ cartItem }: CartItemProps) {
   const dispatch = useAppDispatch();
   return (
     <div className="gap-5 flex flex-col flex-grow">
-      <div className="border border-solid rounded-2xl overflow-hidden p-5 flex items-center">
+      <div className="border border-solid rounded-2xl overflow-hidden p-5 flex items-center justify-between">
         <img
           className="mr-5"
           width={70}

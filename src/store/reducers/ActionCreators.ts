@@ -4,12 +4,14 @@ import { IProduct } from "../../models/IProduct";
 
 
 
-export const fetchProducts = createAsyncThunk(
+
+
+export const fetchProducts = createAsyncThunk<IProduct[], string>(
   "products/fetchAll",
-  async (_, thunkAPI) => {
+  async function(category, thunkAPI) {
     try {
-      const responce = await axios.get<IProduct[]>(
-        "https://run.mocky.io/v3/a1c42a2a-2546-4d1e-b2ec-56c0164c1d61"
+      const responce = await axios.get(
+        "https://631381c3a8d3f673ffcc361c.mockapi.io/products${category}"
       );
       return responce.data;
     } catch (e) {
@@ -17,3 +19,5 @@ export const fetchProducts = createAsyncThunk(
     }
   }
 );
+
+// "https://631381c3a8d3f673ffcc361c.mockapi.io/products"
