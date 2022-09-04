@@ -6,12 +6,12 @@ import { IProduct } from "../../models/IProduct";
 
 
 
-export const fetchProducts = createAsyncThunk<IProduct[], string>(
+export const fetchProducts = createAsyncThunk<IProduct[], any>(
   "products/fetchAll",
-  async function(category, thunkAPI) {
+  async function({category,sort},  thunkAPI) {
     try {
       const responce = await axios.get(
-        "https://631381c3a8d3f673ffcc361c.mockapi.io/products" + category.toString()
+        "https://631381c3a8d3f673ffcc361c.mockapi.io/products" + category + sort
       );
       return responce.data;
     } catch (e) {

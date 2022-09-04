@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { stat } from "fs";
 import { IProduct, ProductsState } from "../../models/IProduct";
 import { fetchProducts } from "./ActionCreators";
 
@@ -7,7 +6,8 @@ const initialState: ProductsState = {
   products: [],
   isLoading: false,
   error: "",
-  category: "",
+  category: "?category=",
+  sort: "&sortBy=price&order=asc"
 };
 
 export const productSlice = createSlice({
@@ -16,12 +16,17 @@ export const productSlice = createSlice({
   reducers: {
     filterProducts: (state, action: PayloadAction<number>) => {
       if (action.payload === 0) {
-        state.category = "";
+        state.category = "?category=";
       } else {
         state.category = "?category=" + action.payload.toString();
       }
     },
+    sortProducts: (state, action: PayloadAction<string>) => {
+      state.sort="&sortBy=price&" + action.payload
+      console.log(state.sort)
+    }
   },
+
   extraReducers: {
     [fetchProducts.fulfilled.type]: (
       state,
@@ -44,4 +49,4 @@ export const productSlice = createSlice({
 
 export default productSlice.reducer;
 
-export const { filterProducts } = productSlice.actions;
+export const { filterProducts,sortProducts } = productSlice.actions;
