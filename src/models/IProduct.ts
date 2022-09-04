@@ -27,6 +27,7 @@ export interface ProductsState {
   products: IProduct[];
   isLoading: boolean;
   error: string;
+  category: string,
 }
 
 export interface CartItemProps {
