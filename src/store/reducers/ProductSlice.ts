@@ -6,8 +6,9 @@ const initialState: ProductsState = {
   products: [],
   isLoading: false,
   error: "",
-  category: "?category=",
-  sort: "&sortBy=price&order=asc"
+  category: "",
+  sortBy: "price",
+  order: "",
 };
 
 export const productSlice = createSlice({
@@ -16,15 +17,14 @@ export const productSlice = createSlice({
   reducers: {
     filterProducts: (state, action: PayloadAction<number>) => {
       if (action.payload === 0) {
-        state.category = "?category=";
+        state.category = "";
       } else {
-        state.category = "?category=" + action.payload.toString();
+        state.category = action.payload.toString();
       }
     },
     sortProducts: (state, action: PayloadAction<string>) => {
-      state.sort="&sortBy=price&" + action.payload
-      console.log(state.sort)
-    }
+      state.order=action.payload;
+    },
   },
 
   extraReducers: {
@@ -49,4 +49,4 @@ export const productSlice = createSlice({
 
 export default productSlice.reducer;
 
-export const { filterProducts,sortProducts } = productSlice.actions;
+export const { filterProducts, sortProducts } = productSlice.actions;

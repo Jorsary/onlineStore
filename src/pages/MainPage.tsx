@@ -1,20 +1,21 @@
 import { useEffect, useState } from "react";
-import Select from "react-select";
+import Select, { SingleValue } from "react-select";
 import Cards from "../components/Cards";
 import MyLoader from "../components/SkeletonCard";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
+import { IOption } from "../models/IProduct";
 import { fetchProducts } from "../store/reducers/ActionCreators";
 import { filterProducts, sortProducts } from "../store/reducers/ProductSlice";
 
 export default function MainPage() {
   const dispatch = useAppDispatch();
-  const { products, isLoading, error, category,sort } = useAppSelector(
+  const { products, isLoading, error, category, sortBy ,order} = useAppSelector(
     (state) => state.products
   );
 
   useEffect(() => {
-    dispatch(fetchProducts({category,sort}));
-  }, [category,sort]);
+    dispatch(fetchProducts({ category, sortBy, order }));
+  }, [dispatch, category, order]);
 
   const categories = [
     "All",
@@ -24,21 +25,14 @@ export default function MainPage() {
     "Jewelery",
   ];
 
-  const options = [
-    { value: "order=desc", label: "Price: Low to High" },
-    { value: "order=asc", label: "Price: High to low" },
+  const options : IOption[] = [
+    { value: "asc", label: "Price: Low to High" },
+    { value: "desc", label: "Price: High to low" },
   ];
 
-  const [currentSort, setCurrentSort] = useState("order=desc");
 
-  const getValue = () => {
-    return currentSort ? options.find((c) => c.value === currentSort) : "";
-  };
-
-  const onChange = (newValue: any) => {
-    setCurrentSort(newValue.value);
-    console.log(currentSort)
-    dispatch(sortProducts(currentSort));
+  const onChange = (newValue: SingleValue<string | IOption>) => {
+    dispatch(sortProducts((newValue as IOption).value));
   };
 
   return (
@@ -63,12 +57,12 @@ export default function MainPage() {
               </li>
             ))}
           </ul>
-          <Select value={getValue()} options={options} onChange={onChange} />
+          <Select onChange={onChange} defaultValue={options[0]} options={options} />
         </div>
       </div>
 
       <div className="px-14  flex-wrap py-11 gap-10  flex">
-        {isLoading && <MyLoader />}
+        {isLoading && [...new Array(8)].map(() => <MyLoader />)}
         {error && <h1>{error}</h1>}
         {products.map((product) => (
           <Cards product={product} key={product.id} />
@@ -77,3 +71,5 @@ export default function MainPage() {
     </div>
   );
 }
+
+

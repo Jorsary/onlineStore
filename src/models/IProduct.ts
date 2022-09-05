@@ -27,8 +27,9 @@ export interface ProductsState {
   products: IProduct[];
   isLoading: boolean;
   error: string;
-  category: string,
-  sort: string,
+  category: string;
+  sortBy: string;
+  order: string;
 }
 
 export interface CartItemProps {
@@ -37,4 +38,8 @@ export interface CartItemProps {
 
 export interface ProductProps {
   product: IProduct;
+}
+export interface IOption {
+  value: string;
+  label: string;
 }
