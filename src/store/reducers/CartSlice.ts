@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { CartState, IProduct } from "../../models/IProduct";
+import { CartState, IProduct } from "../../models/models";
 import { getCartFromLS } from "../../utils/getCartFromLS";
 
 const initialState: CartState = getCartFromLS();

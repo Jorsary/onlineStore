@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-import { IProduct, ProductsState } from "../../models/IProduct";
+import { IProduct, IProducts, ProductsState } from "../../models/models";
 import { fetchProducts } from "./ActionCreators";
 
 const initialState: ProductsState = {
@@ -9,6 +9,9 @@ const initialState: ProductsState = {
   category: "",
   sortBy: "price",
   order: "",
+  page: 1,
+  limit: 8,
+  count: 0,
 };
 
 export const productSlice = createSlice({
@@ -20,21 +23,29 @@ export const productSlice = createSlice({
         state.category = "";
       } else {
         state.category = action.payload.toString();
+        state.page=1
       }
     },
     sortProducts: (state, action: PayloadAction<string>) => {
-      state.order=action.payload;
+      state.order = action.payload;
     },
+    setPages: (state, action: PayloadAction<number>) => {
+      state.page = action.payload;
+    },
+    setCount: (state,action: PayloadAction<number>) => {
+      state.count=action.payload
+    }
   },
 
   extraReducers: {
     [fetchProducts.fulfilled.type]: (
       state,
-      action: PayloadAction<IProduct[]>
+      action: PayloadAction<IProducts>
     ) => {
       state.isLoading = false;
       state.error = "";
-      state.products = action.payload;
+      state.products = action.payload.items;
+      state.count = action.payload.count
     },
     [fetchProducts.pending.type]: (state) => {
       state.isLoading = true;
@@ -49,4 +60,5 @@ export const productSlice = createSlice({
 
 export default productSlice.reducer;
 
-export const { filterProducts, sortProducts } = productSlice.actions;
+export const { filterProducts, sortProducts, setPages } =
+  productSlice.actions;

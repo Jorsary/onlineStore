@@ -17,7 +17,7 @@ export default function Header() {
           <h3 className="uppercase font-bold text-xl leading-6 min-w-max">
             React store
           </h3>
-          <p className="text-sm opacity-50 min-w-max">Магазин низких цен</p>
+          <p className="text-sm opacity-50 min-w-max">Discount store</p>
         </div>
       </NavLink>
       <ul className="flex flex-shrink basis-48 justify-between items-center">

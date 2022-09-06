@@ -1,4 +1,4 @@
-import { IProduct } from "../models/IProduct";
+import { IProduct } from "../models/models";
 
 export const getCartFromLS = () => {
   const data = localStorage.getItem("cartItems");

@@ -1,10 +1,6 @@
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { ProductProps } from "../models/IProduct";
-import {
-  addItem, removeItem
-} from "../store/reducers/CartSlice";
-
-
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { ProductProps } from "../../models/models";
+import { addItem, removeItem } from "../../store/reducers/CartSlice";
 
 export default function Cards({ product }: ProductProps) {
   const { cartItems } = useAppSelector((state) => state.cart);
@@ -31,10 +27,12 @@ export default function Cards({ product }: ProductProps) {
           }
           className="cursor-pointer"
         >
-          <img src={cartAdded ? './img/btn-checked.svg' : './img/plus.svg' } alt="checked" />
+          <img
+            src={cartAdded ? "./img/btn-checked.svg" : "./img/plus.svg"}
+            alt="checked"
+          />
         </button>
       </div>
     </div>
   );
 }
-

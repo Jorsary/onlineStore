@@ -1,5 +1,5 @@
 import { useAppDispatch } from "../hooks/redux";
-import { CartItemProps } from "../models/IProduct";
+import { CartItemProps } from "../models/models";
 import {
   addItem, decreaseCart,
   removeItem

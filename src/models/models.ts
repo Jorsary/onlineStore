@@ -12,6 +12,11 @@ export interface IProduct {
   };
 }
 
+export interface IProducts {
+  count: number,
+  items:IProduct[]
+}
+
 export interface CartProps {
   stateCart?: boolean;
   onOpenCart?: () => void;
@@ -30,6 +35,9 @@ export interface ProductsState {
   category: string;
   sortBy: string;
   order: string;
+  page: number,
+  limit: number,
+  count:number,
 }
 
 export interface CartItemProps {
@@ -38,8 +46,4 @@ export interface CartItemProps {
 
 export interface ProductProps {
   product: IProduct;
-}
-export interface IOption {
-  value: string;
-  label: string;
 }
