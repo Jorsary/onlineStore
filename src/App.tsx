@@ -3,11 +3,12 @@ import Cart from "./components/Cart";
 import Header from "./components/Header";
 import Favorites from "./pages/Favorites";
 import MainPage from "./pages/MainPage";
+import './App.scss'
 
 function App() {
   return (
-      <div className="flex flex-col items-center box-border px-20">
-        <div className="bg-white max-w-6xl w-full rounded-2xl shadow-2xl  my-6">
+      <div className='app'>
+        <div className='app__wrapper'>
           <Cart />
           <Header />
           <Routes>

@@ -1,0 +1,58 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 40px 56px ;
+  border-bottom: 1px solid rgba(15, 23, 42, 0.2);
+}
+
+.logo {
+  background-image: url(../../../public/img/logo.png);
+  background-size: 40px 40px;
+  background-position: left;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.text {
+  margin-left: 50px;
+}
+.title {
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 20px;
+  line-height: 24px;
+  min-width: max-content;
+}
+
+.subTitle {
+  font-size: 14px;
+  line-height: 20px;
+  opacity: 0.5;
+  min-width: max-content;
+}
+
+.navbar {
+  display: flex;
+  flex-shrink: 1;
+  flex-basis: 192px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link {
+  cursor: pointer;
+}
+
+.cart {
+  cursor: pointer;
+  display: flex;
+}
+
+.totalCart {
+  color:rgb(6, 182, 212);
+  font-size: 20px;
+  line-height: 28px;
+  margin-left: 8px;
+}

@@ -1,0 +1,15 @@
+.app {
+  margin: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 20px;
+  box-sizing: border-box;
+  &__wrapper {
+    background-color: #fff;
+    max-width: 1150px;
+    width: 100%;
+    border-radius: 1rem;
+    box-shadow: 0 0 30px 5px rgba(37, 37, 37, 0.2);
+  }
+}

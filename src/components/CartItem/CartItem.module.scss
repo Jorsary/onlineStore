@@ -1,0 +1,59 @@
+.cartitem {
+  display: flex;
+  grid-template: 20px;
+  flex-direction: column;
+  flex-grow: 1;
+  
+}
+
+.wrap {
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+
+
+.title {
+  margin-bottom: 4px;
+  max-width: 240px;
+}
+
+.counter {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.minus {
+  width: 30px;
+  height: 30px;
+  background-image: url(../../../public/img/minus.svg);
+  background-size: contain;
+}
+
+.count {
+  border: 1px solid rgba(15, 23, 42, 0.1);
+  border-radius: 6px;
+  padding: 4px 8px;
+}
+
+.plus {
+  width: 30px;
+  height: 30px;
+  background-image: url(../../../public/img/plus.svg);
+  background-size: contain;
+}
+
+.remove {
+  margin-left: auto;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  background-size: 100%;
+  background-repeat: no-repeat;
+  background-image: url(../../../public/img/btn-remove.svg);
+}

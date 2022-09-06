@@ -1,0 +1,64 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  border-width: 1px;
+  border-radius: 24px;
+  padding: 25px;
+  width: 224px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    box-shadow: 0 5px 10px 1px rgba(37, 37, 37, 0.2);
+    transform: translateY(-4px);
+  }
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.like {
+  cursor: pointer;
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  background-image: url(../../../public/img/heard-unliked.svg);
+}
+
+.img {
+  align-self: center;
+  margin-bottom: 15px;
+}
+
+.title {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 500;
+}
+
+.plus {
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  background-image: url(../../../public/img/btn-plus.svg);
+  &Active {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    background-image: url(../../../public/img/btn-checked.svg);
+  }
+}
+
+.price {
+  display: flex;
+  flex-direction: column;
+  text-transform: uppercase;
+  font-size: 13px;
+  line-height: 16px;
+  font-weight: bold;
+  &Opacity {
+    opacity: 0.5;
+  }
+}

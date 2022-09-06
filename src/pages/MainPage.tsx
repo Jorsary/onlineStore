@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import Select, { SingleValue } from "react-select";
-import Cards from "../components/Cards";
-import MyLoader from "../components/Cards/SkeletonCards";
+import Cards from "../components/Card";
+import MyLoader from "../components/Card/SkeletonCards";
 import Category from "../components/Category";
 import { useAppDispatch, useAppSelector } from "../hooks/redux";
 import { fetchProducts } from "../store/reducers/ActionCreators";
