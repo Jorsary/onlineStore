@@ -1,0 +1,33 @@
+.button {
+  background: rgb(157, 213, 88);
+  border-radius: 18px;
+  color: #ffffff;
+  padding: 18px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  transition: transform .2s ease-in-out; background: .1s ease;
+  &:hover {
+    transform: scale(1.02);
+  }
+  &:active {
+    background: rgba(157, 213, 88,0.7);
+  }
+}
+
+.buttonInactive {
+  background: rgb(73, 73, 73);
+  border-radius: 18px;
+  color: #ffffff;
+  padding: 18px;
+  width: 100%;
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 19px;
+  text-align: center;
+  transition: transform .2s ease-in-out; background: .1s ease;
+}
+
+
