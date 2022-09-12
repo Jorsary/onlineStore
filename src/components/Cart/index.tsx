@@ -97,7 +97,7 @@ export default function Cart() {
               <Buttons
                 disabled={!formValid}
                 type="submit"
-                onClickHand={() => dispatch(PlaceOrder(""))}
+                onClickHand={() => dispatch(PlaceOrder(email))}
                 text="Proceed to Checkout &#9997;"
               />
             </form>
