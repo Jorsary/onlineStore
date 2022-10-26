@@ -2,13 +2,13 @@ import { getValue } from "@testing-library/user-event/dist/utils";
 import { useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import Select, { SingleValue } from "react-select";
-import Cards from "../components/Card";
-import MyLoader from "../components/Card/SkeletonCards";
-import Category from "../components/Category";
-import { useAppDispatch, useAppSelector } from "../hooks/redux";
-import { fetchProducts } from "../store/reducers/ActionCreators";
-import { setPages, sortProducts } from "../store/reducers/ProductSlice";
-
+import Cards from "../../components/Card";
+import MyLoader from "../../components/Card/SkeletonCards";
+import Category from "../../components/Category";
+import { useAppDispatch, useAppSelector } from "../../hooks/redux";
+import { fetchProducts } from "../../store/reducers/ActionCreators";
+import { setPages, sortProducts } from "../../store/reducers/ProductSlice";
+import s from "./MainPage.module.scss";
 export default function MainPage() {
   const dispatch = useAppDispatch();
   const {
@@ -20,7 +20,7 @@ export default function MainPage() {
     order,
     page,
     limit,
-    count
+    count,
   } = useAppSelector((state) => state.products);
 
   useEffect(() => {
@@ -41,18 +41,15 @@ export default function MainPage() {
     dispatch(sortProducts((newValue as IOption).value));
   };
 
-
   const handlePageChange = ({ selected }: { selected: number }) => {
     dispatch(setPages(selected + 1));
   };
 
   return (
     <div>
-      <div className="px-14 py-11">
-        <div className="justify-between flex items-center pb-2">
-          <h1 className="font-bold text-4xl">All goods</h1>
-        </div>
-        <div className="flex justify-between items-center">
+      <div className={s.head}>
+        <h1 className={s.title}>All goods</h1>
+        <div className={s.selecter}>
           <Category />
           <Select
             onChange={onChange}
@@ -68,13 +65,13 @@ export default function MainPage() {
         pageRangeDisplayed={2}
         pageCount={Math.ceil(count / limit)}
         previousLabel="<"
-        previousLinkClassName="rounded-xl px-4 py-3 bg-blue-400 text-center text-white "
-        nextLinkClassName="rounded-xl px-4 py-3 bg-blue-400 text-center text-white "
-        className="flex justify-between max-w-max gap-2 pl-14 font-bold"
-        pageLinkClassName="p-4 bg-white text-center "
-        activeLinkClassName="border-2 rounded  text-center "
+        previousLinkClassName={s.prevnextLink}
+        nextLinkClassName={s.prevnextLink}
+        className={s.paggination}
+        pageLinkClassName={s.pageLink}
+        activeLinkClassName={s.activeLink}
       />
-      <div className="px-14  flex-wrap py-11 gap-10  flex">
+      <div className={s.products}>
         {isLoading && [...new Array(8)].map(() => <MyLoader />)}
         {error && <h1>{error}</h1>}
         {products.map((product) => (

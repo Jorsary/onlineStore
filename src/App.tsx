@@ -1,8 +1,8 @@
 import { Route, Routes } from "react-router-dom";
 import Cart from "./components/Cart";
 import Header from "./components/Header";
-import Favorites from "./pages/Favorites";
-import MainPage from "./pages/MainPage";
+import Favorites from "./pages/Favorites/Favorites";
+import MainPage from "./pages/MainPage/MainPage";
 import './App.scss'
 
 function App() {

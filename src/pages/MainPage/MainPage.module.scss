@@ -1,0 +1,51 @@
+.head {
+  padding: 44px 56px;
+}
+
+.title {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+  padding: 10px 0;
+}
+
+.selecter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.prevnextLink {
+  border-radius: 12px;
+  padding: 12px 16px;
+  background-color: #60a5fa;
+  text-align: center;
+  color: #ffffff;
+}
+
+.paggination {
+  display: flex;
+  justify-content: space-between;
+  max-width: max-content;
+  gap: 8px;
+  padding-left: 56px;
+  font-weight: 700;
+}
+
+.pageLink {
+  padding: 16px;
+  background-color: #fff;
+  text-align: center;
+}
+
+.activeLink {
+  border-width: 2px;
+  border-radius: 4px;
+  text-align: center;
+}
+.products {
+  padding: 44px 56px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 40px;
+}

@@ -1,0 +1,27 @@
+.head{
+  padding: 44px 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+
+.title {
+  font-weight: 700;
+  font-size: 36px;
+  line-height: 40px;
+}
+
+
+.wrapper {
+  display: flex;
+  padding: 0 56px 44px 56px;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.empty {
+  font-size: 24px;
+  line-height: 32px;
+  margin: 0 auto;
+}
