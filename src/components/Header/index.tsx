@@ -31,9 +31,6 @@ export default function Header() {
             <img src="./img/like.svg" alt="add" />
           </NavLink>
         </li>
-        <li className={s.link}>
-          <img src="./img/union.svg" alt="profile" />
-        </li>
       </ul>
     </header>
   );

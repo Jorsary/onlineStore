@@ -25,6 +25,13 @@
   width: 32px;
   height: 32px;
   background-image: url(../../../public/img/heard-unliked.svg);
+  &Active {
+    cursor: pointer;
+    position: absolute;
+    width: 32px;
+    height: 32px;
+    background-image: url(../../../public/img/heart-liked.svg);
+  }
 }
 
 .img {

@@ -4,7 +4,7 @@ import { IProduct } from "../../models/models";
 
 export const fetchProducts = createAsyncThunk<IProduct[], any>(
   "products/fetchAll",
-  async function ({ category, sortBy, order, page, limit }, thunkAPI) {
+  async function ({ category, sortBy, order, page, limit, search }, thunkAPI) {
     try {
       const responce = await axios.get(
         "https://631381c3a8d3f673ffcc361c.mockapi.io/products",
@@ -15,10 +15,11 @@ export const fetchProducts = createAsyncThunk<IProduct[], any>(
             category,
             sortBy,
             order,
+            search,
           },
         }
       );
-      
+      console.log(responce.request)
       return responce.data;
     } catch (e) {
       return thunkAPI.rejectWithValue("Не удалось загрузить товары");

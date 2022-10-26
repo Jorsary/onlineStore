@@ -1,3 +1,4 @@
+import { getValue } from "@testing-library/user-event/dist/utils";
 import { useEffect } from "react";
 import ReactPaginate from "react-paginate";
 import Select, { SingleValue } from "react-select";
@@ -19,7 +20,7 @@ export default function MainPage() {
     order,
     page,
     limit,
-    count,
+    count
   } = useAppSelector((state) => state.products);
 
   useEffect(() => {
@@ -40,6 +41,7 @@ export default function MainPage() {
     dispatch(sortProducts((newValue as IOption).value));
   };
 
+
   const handlePageChange = ({ selected }: { selected: number }) => {
     dispatch(setPages(selected + 1));
   };
@@ -49,15 +51,10 @@ export default function MainPage() {
       <div className="px-14 py-11">
         <div className="justify-between flex items-center pb-2">
           <h1 className="font-bold text-4xl">All goods</h1>
-          <div className="flex gap-2 px-4 py-4 border-solid border rounded-xl">
-            <img src="/img/search.svg" alt="Search" />
-            <input className="outline-none" placeholder="Search..." />
-          </div>
         </div>
         <div className="flex justify-between items-center">
           <Category />
           <Select
-          
             onChange={onChange}
             defaultValue={options[0]}
             options={options}

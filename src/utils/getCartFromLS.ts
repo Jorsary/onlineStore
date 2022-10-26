@@ -10,3 +10,12 @@ export const getCartFromLS = () => {
     cartTotal: 0,
   };
 };
+
+export const getFavoritesFromLS = () => {
+  const data = localStorage.getItem("favoritesItems");
+  const items = data ? JSON.parse(data) : [];
+
+  return {
+    favoritesItems: items as IProduct[]
+  };
+};

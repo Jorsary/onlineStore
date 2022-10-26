@@ -23,6 +23,10 @@ export interface CartProps {
   onCloseCart?: () => void;
 }
 
+export interface FavoritesState {
+  favoritesItems: IProduct[]
+}
+
 export interface CartState {
   cartOpened: boolean;
   cartItems: IProduct[];

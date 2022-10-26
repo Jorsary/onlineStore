@@ -1,9 +1,17 @@
-import { Action, combineReducers, configureStore, ThunkAction } from "@reduxjs/toolkit";
+import {
+  Action,
+  combineReducers,
+  configureStore,
+  ThunkAction,
+} from "@reduxjs/toolkit";
 import productReducer from "./reducers/ProductSlice";
 import cartReducer from "./reducers/CartSlice";
+import favoritesReducer from "./reducers/FavoritesSlice";
+
 const rootReducer = combineReducers({
   products: productReducer,
   cart: cartReducer,
+  favorites: favoritesReducer,
 });
 
 export const store = configureStore({

@@ -8,7 +8,7 @@ const initialState: ProductsState = {
   error: "",
   category: "",
   sortBy: "price",
-  order: "",
+  order: "acer",
   page: 1,
   limit: 8,
   count: 0,
@@ -23,7 +23,7 @@ export const productSlice = createSlice({
         state.category = "";
       } else {
         state.category = action.payload.toString();
-        state.page=1
+        state.page = 1;
       }
     },
     sortProducts: (state, action: PayloadAction<string>) => {
@@ -32,9 +32,9 @@ export const productSlice = createSlice({
     setPages: (state, action: PayloadAction<number>) => {
       state.page = action.payload;
     },
-    setCount: (state,action: PayloadAction<number>) => {
-      state.count=action.payload
-    }
+    setCount: (state, action: PayloadAction<number>) => {
+      state.count = action.payload;
+    },
   },
 
   extraReducers: {
@@ -45,7 +45,7 @@ export const productSlice = createSlice({
       state.isLoading = false;
       state.error = "";
       state.products = action.payload.items;
-      state.count = action.payload.count
+      state.count = action.payload.count;
     },
     [fetchProducts.pending.type]: (state) => {
       state.isLoading = true;
@@ -60,5 +60,4 @@ export const productSlice = createSlice({
 
 export default productSlice.reducer;
 
-export const { filterProducts, sortProducts, setPages } =
-  productSlice.actions;
+export const { filterProducts, sortProducts, setPages, } = productSlice.actions;

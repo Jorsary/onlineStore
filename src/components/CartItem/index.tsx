@@ -34,7 +34,10 @@ export default function CartItem({ cartItem }: CartItemProps) {
           </div>
         </div>
 
-        <button className={s.remove} onClick={() => dispatch(removeItem(cartItem))}></button>
+        <button
+          className={s.remove}
+          onClick={() => dispatch(removeItem(cartItem))}
+        ></button>
       </div>
     </div>
   );
